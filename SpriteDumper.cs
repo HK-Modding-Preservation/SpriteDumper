@@ -178,6 +178,45 @@ public class SpriteDumper : Mod
 
         Texture2D.DestroyImmediate(origTex);
 
+        return RotateTextureFromSprite(outTex, sprite);
+    }
+
+    private Texture2D RotateTextureFromSprite(Texture2D tex, Sprite sprite)
+    {
+        SpritePackingRotation rotation = sprite.packingRotation;
+        if (rotation == SpritePackingRotation.None) return tex;
+        Texture2D outTex = new Texture2D(tex.width, tex.height);
+        if (rotation == SpritePackingRotation.FlipHorizontal)
+        {
+            for (int x = 0; x < tex.width; x++)
+            {
+                for (int y = 0; y < tex.height; y++)
+                {
+                    outTex.SetPixel(x, y, tex.GetPixel(tex.width - (x + 1), y));
+                }
+            }
+        }
+        else if (rotation == SpritePackingRotation.FlipVertical)
+        {
+            for (int x = 0; x < tex.width; x++)
+            {
+                for (int y = 0; y < tex.height; y++)
+                {
+                    outTex.SetPixel(x, y, tex.GetPixel(x, tex.height - (y - 1)));
+                }
+            }
+        }
+        else if (rotation == SpritePackingRotation.Rotate180)
+        {
+            for (int x = 0; x < tex.width; x++)
+            {
+                for (int y = 0; y < tex.height; y++)
+                {
+                    outTex.SetPixel(x, y, tex.GetPixel(tex.width - (x + 1), tex.height - (y - 1)));
+                }
+            }
+        }
+        Texture2D.DestroyImmediate(tex);
         return outTex;
     }
     
