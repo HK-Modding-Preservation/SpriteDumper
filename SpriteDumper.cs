@@ -74,6 +74,7 @@ public class SpriteDumper : Mod
 
     private void DumpSprite(Sprite sprite)
     {
+        if (sprite is null) return;
         DebugLog("!DumpSprite");
 
         //byte[] hashBytes = readTex.GetRawTextureData();
