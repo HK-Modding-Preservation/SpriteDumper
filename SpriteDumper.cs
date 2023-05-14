@@ -26,11 +26,11 @@ public class SpriteDumper : Mod
 
     public override void Initialize()
     {
-        DebugLog("!Initialize");
+        InfoLog("!Initialize");
         
         ModHooks.HeroUpdateHook += UpdateHook;
 
-        DebugLog("~Initialize");
+        InfoLog("~Initialize");
     }
 
     private void UpdateHook()
@@ -46,24 +46,24 @@ public class SpriteDumper : Mod
 
     private IEnumerator SpriteDumpCoroutine(SpriteRenderer[] srs)
     {
-        DebugLog("!Dumping Sprites!");
+        InfoLog("!Dumping Sprites!");
         foreach (SpriteRenderer sr in srs)
         {
             DumpSprite(sr.sprite);
             yield return null;
         }
-        DebugLog("~Dumping Sprites!");
+        InfoLog("~Dumping Sprites!");
     }
 
     private IEnumerator SpriteDumpCoroutine(Sprite[] srs)
     {
-        DebugLog("!Dumping Sprites!");
+        InfoLog("!Dumping Sprites!");
         foreach (Sprite sr in srs)
         {
             DumpSprite(sr);
             yield return null;
         }
-        DebugLog("~Dumping Sprites!");
+        InfoLog("~Dumping Sprites!");
     }
 
     private string GetTextureHash(byte[] pngBytes)
@@ -252,13 +252,16 @@ public class SpriteDumper : Mod
         DebugLog("~saveTex");
     }
 
+    private static void InfoLog(string msg)
+    {
+        Modding.Logger.Log($"[{typeof(SpriteDumper).FullName.Replace(".", "][")}] - {msg}");
+        Debug.Log($"[{typeof(SpriteDumper).FullName.Replace(".", "][")}] - {msg}");
+    }
+    private static void InfoLog(object msg) => InfoLog($"{msg}");
     private static void DebugLog(string msg)
     {
         Modding.Logger.LogDebug($"[{typeof(SpriteDumper).FullName.Replace(".", "][")}] - {msg}");
         Debug.Log($"[{typeof(SpriteDumper).FullName.Replace(".", "][")}] - {msg}");
     }
-    private static void DebugLog(object msg)
-    {
-        DebugLog($"{msg}");
-    }
+    private static void DebugLog(object msg) => DebugLog($"{msg}");
 }
