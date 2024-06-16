@@ -20,14 +20,14 @@ public class SpriteDumper : Mod
     public SpriteDumper() : base("Sprite Dumper")
     {
         _dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/Sprites/";
-        
+
         if (!Directory.Exists(_dir)) Directory.CreateDirectory(_dir);
     }
 
     public override void Initialize()
     {
         InfoLog("!Initialize");
-        
+
         ModHooks.HeroUpdateHook += UpdateHook;
 
         InfoLog("~Initialize");
@@ -93,7 +93,7 @@ public class SpriteDumper : Mod
             try
             {
                 byte[] pngBytes = readTex.EncodeToPNG();
-                
+
                 SaveTex(pngBytes, $"{folder}/{spriteCollectionName}.png");
             }
             catch (Exception)
@@ -220,7 +220,7 @@ public class SpriteDumper : Mod
         Texture2D.DestroyImmediate(tex);
         return outTex;
     }
-    
+
     private static float CalcTriangleArea(Vector2Int a, Vector2Int b, Vector2Int c)
     {
         return Mathf.Abs(((a.x * (b.y - c.y)) + (b.x * (c.y - a.y)) + (c.x * (a.y - b.y))) / 2f);
