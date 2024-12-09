@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using Modding;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UObject = UnityEngine.Object;
 
 namespace SpriteDumper;
