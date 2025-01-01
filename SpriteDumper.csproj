@@ -6,7 +6,7 @@
         <AssemblyName>SpriteDumper</AssemblyName>
         <AssemblyTitle>SpriteDumper</AssemblyTitle>
         <Description>A Hollow Knight Mod</Description>
-        <Copyright>Copyright © SFGrenade 2024</Copyright>
+        <Copyright>Copyright © SFGrenade 2025</Copyright>
         <PathMap>$(MSBuildProjectDirectory)=source</PathMap>
         <AssemblyVersion>1.5.0.0</AssemblyVersion>
         <FileVersion>$(AssemblyVersion)</FileVersion>
