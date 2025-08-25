@@ -20,7 +20,7 @@ public class SpriteDumper : Mod
 
     public SpriteDumper() : base("Sprite Dumper")
     {
-        _dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/Sprites/";
+        _dir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Sprites");
 
         if (!Directory.Exists(_dir)) Directory.CreateDirectory(_dir);
     }
